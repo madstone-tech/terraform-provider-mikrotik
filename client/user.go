@@ -34,7 +34,7 @@ func (client Mikrotik) AddUser(user *User) (*User, error) {
 
 	id := r.Done.Map["ret"]
 
-	return client.User(id)
+	return client.FindUser(id)
 }
 
 func (client Mikrotik) ListUser() ([]User, error) {

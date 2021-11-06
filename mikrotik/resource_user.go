@@ -59,7 +59,7 @@ func resourceUserCreate(ctx context.Context, d *schema.ResourceData, m interface
 		return diag.FromErr(err)
 	}
 
-	return addrToData(usr, d)
+	return userToData(usr, d)
 }
 
 func resourceUserRead(ctx context.Context, d *schema.ResourceData, m interface{}) diag.Diagnostics {
@@ -134,14 +134,14 @@ func userToData(user *client.User, d *schema.ResourceData) diag.Diagnostics {
 }
 
 func prepareUser(d *schema.ResourceData) *client.User {
-	ipaddr := new(client.User)
+	user := new(client.User)
 
-	User.Comment = d.Get("comment").(string)
-	User.Address = d.Get("address").(string)
-	User.Disabled = d.Get("disabled").(bool)
-	User.Expired = d.Get("expired").(bool)
-	User.Group = d.Get("group").(string)
-	User.Name = d.Get("name").(string)
+	user.Comment = d.Get("comment").(string)
+	user.Address = d.Get("address").(string)
+	user.Disabled = d.Get("disabled").(bool)
+	user.Expired = d.Get("expired").(bool)
+	user.Group = d.Get("group").(string)
+	user.Name = d.Get("name").(string)
 
-	return ipaddr
+	return user
 }
